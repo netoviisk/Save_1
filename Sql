@@ -1,0 +1,21 @@
+CREATE DATABASE tarefa;
+
+USE tarefa;
+
+CREATE TABLE usuarios(
+	codigo INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE tarefas(
+	codigo INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(45) NOT NULL,
+    setor VARCHAR(45) NOT NULL,
+    prioridade VARCHAR(45) NOT NULL,
+    status VARCHAR(45) NOT NULL,
+    data DATE NOT NULL,
+    usu_codigo INT
+);
+
+ALTER TABLE tarefas ADD CONSTRAINT fk_usu_codigo FOREIGN KEY (usu_codigo) REFERENCES usuarios(codigo);
