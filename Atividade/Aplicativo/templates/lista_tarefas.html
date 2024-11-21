@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #34495e;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ecf0f1;
+        }
+
+        .alert {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #000;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #1abc9c;
+            color: #333;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #ffffff;
+            color: #333;
+            text-align: center;
+        }
+
+        td, th {
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            margin: 5px;
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            color: white;
+            border: 2px solid #000;
+        }
+
+        .btn-warning:hover {
+            background-color: #e67e22;
+            transform: scale(1.05);
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+            border: 2px solid #000;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .add-user {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #1abc9c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-user:hover {
+            background-color: #16a085;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #1c2833;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+            border-top: 1px solid #34495e;
+        }
+
+        footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+        }
+
+        .center-div {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Tarefas</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Setor</th>
+                    <th>Prioridade</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                    <th>Usuário</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tarefa in tarefas %}
+                    <tr>
+                      <td>{{ tarefa.descricao }}</td>
+                      <td>{{ tarefa.setor }}</td>
+                      <td>{{ tarefa.prioridade }}</td>
+                      <td>{{ tarefa.status }}</td>
+                      <td>{{ tarefa.data }}</td>
+                      <td>{{ tarefa.usu_codigo.nome }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                      <td colspan="7" class="text-center">Nenhuma Tarefa encontrada.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="center-div">
+            <a href="{% url 'cadastrar_tarefa' %}" class="add-user">Criar Nova Tarefa</a>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 S.G.U</p>
+        </footer>
+    </div>
+</body>
+</html>
