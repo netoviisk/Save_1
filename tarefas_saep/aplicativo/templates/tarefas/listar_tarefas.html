@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Lista de Tarefas</h1>
+        </header>
+        <table>
+            <tr>
+                <th>Código</th>
+                <th>Descrição</th>
+                <th>Setor</th>
+                <th>Prioridade</th>
+                <th>Status</th>
+                <th>Data</th>
+                <th>Ações</th> <!-- Nova coluna para Ações -->
+            </tr>
+            {% for tarefa in tarefas %}
+            <tr>
+                <td>{{ tarefa.tar_codigo }}</td>
+                <td>{{ tarefa.tar_descricao }}</td>
+                <td>{{ tarefa.tar_setor }}</td>
+                <td>{{ tarefa.tar_prioridade }}</td>
+                <td>{{ tarefa.tar_status }}</td>
+                <td>{{ tarefa.tar_data }}</td>
+                <td>
+                    <a href="{% url 'edita_tarefas' tarefa.tar_codigo %}" class="button">Editar</a>
+                    <a href="{% url 'exclui_tarefas' tarefa.tar_codigo %}" class="button" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{% url 'cadastro_tarefas' %}" class="button">Cadastrar Tarefa</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
